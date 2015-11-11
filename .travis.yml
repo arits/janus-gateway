@@ -7,7 +7,8 @@ before_script:
     - cd opus-1.1
     - ./configure && make
     - sudo make install
-    - cd
+    - cd ..
+    - rm -rf opus-1.1
 script:
     - sh autogen.sh
     - ./configure --prefix=/opt/janus --disable-websockets --disable-data-channels --disable-rabbitmq
