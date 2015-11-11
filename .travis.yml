@@ -1,3 +1,6 @@
+sudo: required
+dist: trusty
+
 env:
   global:
     - secure: "U4BZMH+cXZN5W8KzhsF5rMAOvUqKpLQuLUgpmHAlQTDHqY6AzHnRlCNmgJPKQ6ipk8gIxh+d6VoXP9ulg58Xv76WkQFc5fUATRrK4Yps8sJP+fl6BBzg5GJ9/xbaDzFlDHWFgTBoa24G8MpHOxMpMq/KRpVAV9t8IFJrH6vplWuTvIZUwI6SQ5UnPXUg+7V4c6nRQ5rIWHiaQpq9p41ub88itzrB6l396dXeVLml9Uq8P3DoNuIwmwXDqtJnOX4AveETkQXuEsCUCxpSljMuXOggiu8pQ6S7HUNUkRRR0r0VHoWByRIbhOkBv4c6gJF1A9S3OeYzSCbeWsfbFVG+NsLlrtgyt0el30gtyC+YnvtRiBOQ3nbAWTYvfsYJVzDYMVtJdiRD+CTrYn5n4vZVPFhJm3k4luaSWK5gUNlfiSmrM6GZ87WgpvRN92vS1tB2ucI6UHCVAwC9jmOomoOwighGGLuLdAlthes640Za1GXd7wA4SlaZGoQ2lpuX6VNjwji4Oc7W5p2+E+P2xApdqgKrKB5uaPDR8UtjQqWJqqYG2UidoAlb/CPCKWeRXf8cwNow5jmXqy/H/xQ0nwGQDhqIW4XRRqYF2GDNEWQeTAAgbVbohSwXpANCwLR5DSViMgFSWp4V3lAF/0VMxaWGPiqql307AueXI/xmSzqHBvE="
@@ -32,16 +35,9 @@ addons:
 language: c++
 before_script:
     - sudo apt-get update -qq
-    - sudo apt-get install -qq build-essential cmake libmicrohttpd-dev libini-config-dev libjansson-dev libnice-dev libssl-dev libsrtp-dev libsofia-sip-ua-dev libglib2.0-dev libogg-dev pkg-config gengetopt libtool automake
-    - wget http://downloads.xiph.org/releases/opus/opus-1.1.tar.gz
-    - tar -xvf opus-1.1.tar.gz
-    - cd opus-1.1
-    - ./configure && make
-    - sudo make install
-    - cd ..
-    - rm -rf opus-1.1
+    - sudo apt-get install -qq build-essential cmake libopus-dev libmicrohttpd-dev libini-config-dev libjansson-dev libnice-dev libssl-dev libsrtp-dev libsofia-sip-ua-dev libglib2.0-dev libogg-dev pkg-config gengetopt libtool automake
 script:
     - sh autogen.sh
-    - ./configure --prefix=$HOME/janusbuild --libdir=/usr/lib64 --disable-docs --disable-data-channels --disable-rabbitmq --disable-websockets
+    - ./configure --prefix=$HOME/janusbuild --disable-docs --disable-data-channels --disable-rabbitmq --disable-websockets
     - make
     - make install
