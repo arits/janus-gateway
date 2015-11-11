@@ -1,0 +1,11 @@
+language: c++
+before_script:
+    - sudo apt-get update -qq
+    - sudo apt-get install -qq libmicrohttpd-dev libjansson-dev libnice-dev libssl-dev libsrtp-dev libsofia-sip-ua-dev libglib2.0-dev libopus-dev libogg-dev pkg-config gengetopt libtool automake
+    
+script:
+    - sh autogen.sh
+    - ./configure --prefix=/opt/janus --disable-websockets --disable-data-channels --disable-rabbitmq
+    - make
+    - make install
+    - make configs
