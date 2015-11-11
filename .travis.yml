@@ -11,7 +11,7 @@ addons:
     # GitHub project metadata
     # ** specific to your project **
     project:
-      name: arits/janus-gateway
+      name: janus-gateway
       version: 1.0
       description: JanusGateway
 
