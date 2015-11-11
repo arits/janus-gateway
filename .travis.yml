@@ -32,7 +32,7 @@ addons:
 language: c++
 before_script:
     - sudo apt-get update -qq
-    - sudo apt-get install -qq libmicrohttpd-dev libini-config-dev libjansson-dev libnice-dev libssl-dev libsrtp-dev libsofia-sip-ua-dev libglib2.0-dev libogg-dev pkg-config gengetopt libtool automake
+    - sudo apt-get install -qq build-essential cmake libmicrohttpd-dev libini-config-dev libjansson-dev libnice-dev libssl-dev libsrtp-dev libsofia-sip-ua-dev libglib2.0-dev libogg-dev pkg-config gengetopt libtool automake
     - wget http://downloads.xiph.org/releases/opus/opus-1.1.tar.gz
     - tar -xvf opus-1.1.tar.gz
     - cd opus-1.1
@@ -42,6 +42,6 @@ before_script:
     - rm -rf opus-1.1
 script:
     - sh autogen.sh
-    - ./configure --prefix=$HOME/janusbuild --disable-docs --disable-data-channels --disable-rabbitmq --disable-websockets
+    - ./configure --prefix=$HOME/janusbuild --libdir=/usr/lib64 --disable-docs --disable-data-channels --disable-rabbitmq --disable-websockets
     - make
     - make install
