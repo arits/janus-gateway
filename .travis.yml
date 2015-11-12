@@ -3,7 +3,7 @@ dist: trusty
 
 env:
   global:
-    - secure: "U4BZMH+cXZN5W8KzhsF5rMAOvUqKpLQuLUgpmHAlQTDHqY6AzHnRlCNmgJPKQ6ipk8gIxh+d6VoXP9ulg58Xv76WkQFc5fUATRrK4Yps8sJP+fl6BBzg5GJ9/xbaDzFlDHWFgTBoa24G8MpHOxMpMq/KRpVAV9t8IFJrH6vplWuTvIZUwI6SQ5UnPXUg+7V4c6nRQ5rIWHiaQpq9p41ub88itzrB6l396dXeVLml9Uq8P3DoNuIwmwXDqtJnOX4AveETkQXuEsCUCxpSljMuXOggiu8pQ6S7HUNUkRRR0r0VHoWByRIbhOkBv4c6gJF1A9S3OeYzSCbeWsfbFVG+NsLlrtgyt0el30gtyC+YnvtRiBOQ3nbAWTYvfsYJVzDYMVtJdiRD+CTrYn5n4vZVPFhJm3k4luaSWK5gUNlfiSmrM6GZ87WgpvRN92vS1tB2ucI6UHCVAwC9jmOomoOwighGGLuLdAlthes640Za1GXd7wA4SlaZGoQ2lpuX6VNjwji4Oc7W5p2+E+P2xApdqgKrKB5uaPDR8UtjQqWJqqYG2UidoAlb/CPCKWeRXf8cwNow5jmXqy/H/xQ0nwGQDhqIW4XRRqYF2GDNEWQeTAAgbVbohSwXpANCwLR5DSViMgFSWp4V3lAF/0VMxaWGPiqql307AueXI/xmSzqHBvE="
+    - secure: "dyn+dDvcqHB8IkPWBnwDNE0rgTY2Rn2eHDD2JfwOUpe03owGkOJbwFQAt/LMGzf7FY7Zcy3Hbn2FWQ/ASNIaM9CejNH+y1B16dudQYAOF4nz5TbPaQMCu7ljA1czmvyy0r6jZ82FwGdaYNdeT84S3XEGks0p6JffSY5TKq/xZqi0d8JQrai1G5vI6jh4LagcihMINbYJKWd2doxJ6SotZLs+3m3I8vwPxPXW68lx6mVkM6W+eF9C7SAulNSPaZ8O0rimJbAMSSDGa/t/arzYiC3qFOK5ISkc62mEEdYnaXGMPi0PQPHjIuNB95Tz2Gi4QDnh3aO+GcpAsMH293REHREcsJ+87nHZ1T4G+hjSPnmTbdHLxHBxtiJ8wclv7Mh4zQZ+Ou4+8COsWbSurWZfCsogqWVSjpTEQBElF7yDnm+5VrZ1YRrAFUSoCN5LUnlaVes4Z59Hi2AlKrcHd2gpyTeoz0WrxA/xzXbuN6gQq1HFD3m+eBPC3g117uuCANdy7c2OWc4xYYoc4in1MCxnbCcuLJzGG2TXsr7/1EDt8N1CgtY0rXXvABzs6ycITGA493TT5lpg42XuXJD3ZjEivaNq85Eo7XWNjtSTn+3hCjqGx7tFFrMG4dCzLvYLrthyRNCYKrI7EWpx2AB/u2KKHOt7j4Af/Yy0beLN0yzAcsA="
 
 addons:
   coverity_scan:
@@ -11,16 +11,17 @@ addons:
     # GitHub project metadata
     # ** specific to your project **
     project:
-      name: arits/janus-gateway
+      name: janus-gateway
       version: 1.0
       description: JanusGateway
 
     # Where email notification of build analysis results will be sent
-    #notification_email: scan_notifications@example.com
+    notification_email: 
+      secure: "zGscfUD5qoBKKv7dM3Zc1u7e/c2fLTtZq28y7angmEJvFqNixu0YCymHoLfHDzfMMQ+apQqyBFs1yu9d/UIUFeh5wXeB7xQe2cOr6Sww5FnxD8eo1yOq3eKm6dgzsTPomacgEIeGb63ea5N6h20IzwCcspaTRaVpFGsaJ4mFdHr2eFhhGq0RYvbhzM1mtvIZhU1fxInUtkyDBmqwBewOH9QXvCQRKXI103vlWnpFVza4FoJCYRCWVbIh08XwgwGp2tdnn0oWliWtAQ1nNJTX1g9z7rf1zTrivFp1iiy0TGnvMqpOR4Ta2XBuZFITigTtlKe3TsxLtJVts1AzKvSvsKuFPbAEseGyZ0jLPnJWDUYOzBiFZnRgSWKm5mvD3QJIAl652PDOMsRUnMpHODhEh38NIiIctOMicKdvcdoOLT2tsiEZ82roiw1mSdWJM/X/oRdTZUCiZxf/h2QQqq7x8+ULe65k2lL3CahbinJCfOyaz1zOPceNYobSFOgGvGAWscBlyrZjT6zRPMIPXAgCoYE6WdutrsiiAdpjLR0Kq5/cToPe82c8XWD1H1LKwNjUmEuYcS1w/iN0TTbzihgooPamKU7FhWfSU4Z6fqii3bNyDOLX5R/UwCHaG4y5h4kThTq7ri3C0s9e4LX0u6sRB2iPWUltrrm4gAeFNX4LNlo="
 
     # Commands to prepare for build_command
     # ** likely specific to your build **
-    build_command_prepend: ./configure
+    build_command_prepend: sh autogen.sh && ./configure --prefix=$HOME/janusbuild --disable-docs --disable-data-channels --disable-rabbitmq --disable-websockets
 
     # The command that will be added as an argument to "cov-build" to compile your project for analysis,
     # ** likely specific to your build **
@@ -36,8 +37,3 @@ language: c++
 before_script:
     - sudo apt-get update -qq
     - sudo apt-get install -qq build-essential cmake libopus-dev libmicrohttpd-dev libini-config-dev libjansson-dev libnice-dev libssl-dev libsrtp-dev libsofia-sip-ua-dev libglib2.0-dev libogg-dev pkg-config gengetopt libtool automake
-script:
-    - sh autogen.sh
-    - ./configure --prefix=$HOME/janusbuild --disable-docs --disable-data-channels --disable-rabbitmq --disable-websockets
-    - make
-    - make install
