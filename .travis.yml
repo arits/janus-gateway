@@ -21,7 +21,7 @@ addons:
 
     # Commands to prepare for build_command
     # ** likely specific to your build **
-    build_command_prepend: ./configure --prefix=$HOME/janusbuild --disable-docs --disable-data-channels --disable-rabbitmq --disable-websockets
+    build_command_prepend: sh autogen.sh && ./configure --prefix=$HOME/janusbuild --disable-docs --disable-data-channels --disable-rabbitmq --disable-websockets
 
     # The command that will be added as an argument to "cov-build" to compile your project for analysis,
     # ** likely specific to your build **
@@ -37,8 +37,3 @@ language: c++
 before_script:
     - sudo apt-get update -qq
     - sudo apt-get install -qq build-essential cmake libopus-dev libmicrohttpd-dev libini-config-dev libjansson-dev libnice-dev libssl-dev libsrtp-dev libsofia-sip-ua-dev libglib2.0-dev libogg-dev pkg-config gengetopt libtool automake
-script:
-    - sh autogen.sh
-    - ./configure --prefix=$HOME/janusbuild --disable-docs --disable-data-channels --disable-rabbitmq --disable-websockets
-    - make
-    - make install
